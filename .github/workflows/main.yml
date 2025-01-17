@@ -85,23 +85,11 @@ jobs:
         pwd
         kubectl apply -f k8s/deployment.yaml
         kubectl apply -f k8s/service.yaml
-
-    - name: Describe the Pod
-      run: |         
-        POD_NAME=$(kubectl get pods -l app=java-app -o jsonpath='{.items[0].metadata.name}')
-        kubectl describe pod $POD_NAME
-    - name: Fetch Pod Logs
-      run: |
-        POD_NAME=$(kubectl get pods -l app=java-app -o jsonpath='{.items[0].metadata.name}')
-        kubectl logs $POD_NAME
- 
-    - name: Check Kubernetes Events
-      run: kubectl get events --sort-by='.metadata.creationTimestamp'
         
     # Step 4: Verify Pods and Service Status
     - name: Verify Application is Running
       run: |
-        sleep 10
+        sleep 30
         kubectl get pods
         kubectl get svc
         kubectl port-forward svc/java-app 8080:8080 &
