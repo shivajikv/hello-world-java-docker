@@ -1,4 +1,4 @@
-name: Java App CI/CD Workflow
+name: Java App CI/CD Workflow 
  
 on:
   workflow_dispatch:
